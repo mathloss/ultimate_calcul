@@ -1,0 +1,137 @@
+MyScreenManager:
+
+<MyscreenManager@ScreenManager>:
+    Screen:
+        name:"screen1"
+        BoxLayout:
+            orientation: "vertical"
+            Button:
+                text: "Addition de 0 à 10"
+                on_press: root.transition.direction = 'left'; root.current = "screen2" ; root.titre_signe1() ; root.choix1()
+                font_size: 40
+            Button:
+                text: "Addition de 50 à 500"
+                on_press: root.transition.direction = 'left'; root.current = "screen2" ; root.titre_signe1() ; root.choix2()
+                font_size: 40
+            Button:
+                text: "Multiplication de 0 à 5 et 10"
+                on_press: root.transition.direction = 'left'; root.current = "screen2" ; root.titre_signe2() ; root.choix3()
+                font_size: 40
+            Button:
+                text: "Multiplication de 0 à 10"
+                on_press: root.transition.direction = 'left'; root.current = "screen2" ; root.titre_signe2() ; root.choix4()
+                font_size: 40
+    Screen:
+        name:"screen2"
+        BoxLayout:
+            orientation: "vertical"
+            BoxLayout:
+                size_hint: 1, .4
+                BoxLayout:
+                    orientation: "vertical"
+                    Button:
+                        id: nouvelle_partie
+                        text: "Nouvelle partie"
+                        size_hint: .5, .2
+                        on_press: root.reset_partie()
+                    Button:
+                        id: retour
+                        text: "Menu"
+                        size_hint: .5, .2
+                        on_press: root.transition.direction = 'right' ; root.current = "screen1"
+                    Button:
+                        id: quitter
+                        text: "Quitter"
+                        size_hint: .5, .2
+                        on_press: root.quit_partie()
+
+                Label:
+                    id: titre
+                    text: "Addition : "
+                    text_size: self.size
+                    halign: "left"
+                    valign:"center"
+                    size_hint: 2.2, .8
+                    font_size: 80
+
+            BoxLayout:
+                orientation: "horizontal"
+                Label:
+                    id: nbr_A
+                    text:"0"
+                    font_size: 80
+                Label:
+                    id: signe
+                    text: "+"
+                    font_size: 80
+                Label:
+                    id: nbr_B
+                    text: "0"
+                    font_size: 80
+                Label:
+                    text: "="
+                    font_size: 80
+                BoxLayout:
+                    orientation: "vertical"
+                    Label:
+                        text: "Ta réponse:"
+                        size_hint: 1, .45
+                        font_size: 20
+                    TextInput:
+                        id: sol_input
+                        padding: dp(20), dp(20)
+                        multiline: False
+                        font_size: 72
+                        text: "0"
+                    Button:
+                        text: "OK"
+                        size_hint: 1, .2
+                        on_press: root.compare()
+                        on_press: root.rep_ok()
+                        on_press: root.essai()
+                        on_press: root.image()
+                    Label:
+                        text: ""
+                        size_hint: .8, .4
+
+            BoxLayout:
+                BoxLayout:
+                    Label:
+                        id: resultat
+                        text: ""
+                        size_hint: 2, .5
+                        spacing: dp(15)
+                        font_size: 80
+                    Image:
+                        id: image
+                        source: "image/noir.png"
+                        size_hint: 1, .5
+                        font_size: 80
+                        pos_hint: {"center": 1}
+
+
+                BoxLayout:
+                    size_hint: .3, 1
+                    orientation: "vertical"
+                    BoxLayout:
+                        Label:
+                            text: "Score : "
+                        Label:
+                            id: rep_ok
+                            text: "0"
+                        Label:
+                            text: "/"
+                        Label:
+                            id: essai
+                            text: "0"
+                    Button:
+                        text: "Suivant"
+                        pos_hint: {"right": 1}
+                        font_size: 32
+                        color: 0,0,0,1
+                        on_press: root.press()
+                        on_press: root.clear()
+
+
+
+
